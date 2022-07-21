@@ -19,6 +19,7 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/myProfile', [AuthController::class, 'myProfile'])->middleware('jwt.auth');
-
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('jwt.auth');;
+Route::group(["middleware" => "jwt.auth"] , function() {
+    Route::get('/myProfile', [AuthController::class, 'myProfile']);
+    Route::post('/logout', [AuthController::class, 'logout']); 
+});
