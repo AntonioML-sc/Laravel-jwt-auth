@@ -50,4 +50,9 @@ class AuthController extends Controller
             'token' => $jwt_token,
         ]);
     }
+
+    public function myProfile()
+    {
+        return response()->json(auth()->user());  // saco la información del token
+    }
 }
